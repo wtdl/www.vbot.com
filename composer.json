@@ -1,0 +1,8 @@
+{
+    "require": {
+        "hanson/vbot": "^2.0",
+        "vbot/tuling": "^1.0",
+        "vbot/express": "^1.0",
+        "vbot/guess-number": "^1.0"
+    }
+}
