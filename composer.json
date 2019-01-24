@@ -1,8 +1,20 @@
 {
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/var/www/vbot/wtdl/groupmessage"
+        }
+    ],
     "require": {
         "hanson/vbot": "^2.0",
         "vbot/tuling": "^1.0",
         "vbot/express": "^1.0",
-        "vbot/guess-number": "^1.0"
-    }
+        "vbot/guess-number": "^1.0",
+        "vbot/find-movies": "^1.1",
+        "wtdl/groupmessage": "dev-master"
+    },
+    "require-dev": {
+        "wtdl/groupmessage": "*@dev"
+    },
+    "minimum-stability": "dev"
 }

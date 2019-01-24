@@ -3,6 +3,8 @@
 use Vbot\GuessNumber\GuessNumber;
 use Vbot\Tuling\Tuling;
 use Vbot\Express\Express;
+use Wtdl\GroupMessage\GroupMessage;
+use Vbot\FindMovies\FindMovies;
 use Hanson\Vbot\Message\Text;
 use Hanson\Vbot\Foundation\Vbot as Wechat;
 
@@ -14,7 +16,7 @@ $options = [
     * swoole 配置项（执行主动发消息命令必须要开启，且必须安装 swoole 插件）
     */
     'swoole' => [
-        'status' => true,
+        'status' => false,
         'ip' => '127.0.0.1',
         'port' => '8866',
     ],
@@ -80,14 +82,19 @@ $options = [
     'extension' => [
         // 管理员配置（必选），优先加载 remark_name
         'admin' => [
-            'remark' => 'pengjian',
-            'nickname' => 'pengjianvip',
+            'remark' => 'hello my',
+            'nickname' => 'hello my',
         ],
         'tuling' => [
             'status' => true,
             'key' => '2b700ebfec6593f3e2f452b3bcb8be6e',
             'error_message' => '图灵机器人失灵了，暂时没法陪聊了，T_T！',
         ],
+        'find_movies' => [
+            'limit' => 5,
+            'msg' => '抱歉,没有找到和 "{keyword}" 相关的电影。',
+            'render' => function ($movies){return '自定义消息';}
+        ]
     ],
 ];
 $Wechat = new Wechat($options);
@@ -106,7 +113,9 @@ $Wechat->messageHandler->setHandler(function ($message) {
 $Wechat->messageExtension->load([
     GuessNumber::class,
     Express::class,
-    Tuling::class
+    Tuling::class,
+    FindMovies::class,
+    GroupMessage::class
 ]);
 
 $Wechat->messageHandler->setCustomHandler(function () {
